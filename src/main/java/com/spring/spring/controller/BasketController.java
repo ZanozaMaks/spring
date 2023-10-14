@@ -5,9 +5,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.util.List;
+import java.util.Map;
 
+@SessionScope
 @RestController
 @RequestMapping ("/order")
 public class BasketController {
@@ -19,12 +22,12 @@ public class BasketController {
     }
 
     @GetMapping("/add")
-    public List<Integer>add(@RequestParam List<Integer> identifiers) {
+    public List<Integer> add(@RequestParam List<Integer> identifiers) {
         return basketService.add(identifiers);
     }
 
     @GetMapping("/get")
-    public List<Integer>get() {
+    public Map<Integer, Integer> get() {
         return basketService.get();
     }
 }
